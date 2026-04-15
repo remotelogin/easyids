@@ -1,7 +1,17 @@
 #include <iostream>
 
 #include "../include/json.hpp"
+#include "../include/definitions.hpp"
 #include "serial_wrapper.hpp"
+
+void from_json(const nlohmann::json& j, presence_sensor_data& d) {
+    j.at("id").get_to(d.id);
+    j.at("x").get_to(d.x);
+    j.at("y").get_to(d.y);
+    j.at("speed").get_to(d.speed);
+    j.at("distance").get_to(d.distance);
+    j.at("valid").get_to(d.valid);
+}
 
 int main() {
 
@@ -39,10 +49,18 @@ int main() {
 	buffer.erase(0, pos + 1);
 	
 	if (!line.empty()) {
-	  std::cout << "LINE: " << line << std::endl;
+	  if(line == "\\TJ") {
+	    //std::cout<< "delimiter detected!\n";
+	  } else {
+	    //LINE: {"id":1,"x":0,"y":0,"speed":0,"distance":0,"valid":0}
+	    //std::cout << "chunk: " << line << std::endl;
+	    nlohmann::json jdata = nlohmann::json::parse(line);
+	    presence_sensor_data pd = jdata.get<presence_sensor_data>();
 
-	  //json shit
-
+	    if(pd.valid == 1)
+	      std::cout << "PERSON DETECTED!!!\n";
+	    
+	  }
 	}
       }
     }

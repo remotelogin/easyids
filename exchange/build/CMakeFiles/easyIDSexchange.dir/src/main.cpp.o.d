@@ -247,6 +247,7 @@ CMakeFiles/easyIDSexchange.dir/src/main.cpp.o: \
  /usr/include/c++/15.2.1/bits/stl_numeric.h \
  /usr/include/c++/15.2.1/pstl/glue_numeric_defs.h \
  /usr/include/c++/15.2.1/any \
+ /home/sovii/coding/embedded/easyids/exchange/src/../include/definitions.hpp \
  /home/sovii/coding/embedded/easyids/exchange/src/serial_wrapper.hpp \
  /usr/include/fcntl.h /usr/include/bits/fcntl.h \
  /usr/include/bits/fcntl-linux.h /usr/include/bits/types/struct_iovec.h \

@@ -46,7 +46,7 @@ void sendTargetJSON(int id, const LD2450::RadarTarget &t) {
 
 void loop() {
   if (ld2450.read() > 0) {
-    Serial.print("\\TJ");
+    Serial.println("\\TJ");
     for (int i = 0; i < ld2450.getSensorSupportedTargetCount(); i++)
       {
 	sendTargetJSON(i, ld2450.getTarget(i));
