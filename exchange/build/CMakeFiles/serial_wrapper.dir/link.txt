@@ -1,0 +1,2 @@
+/usr/bin/ar qc libserial_wrapper.a CMakeFiles/serial_wrapper.dir/src/serial_wrapper.cpp.o
+/usr/bin/ranlib libserial_wrapper.a

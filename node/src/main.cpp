@@ -1,32 +1,55 @@
-/**
- * Blink
- *
- * Turns on an LED on for one second,
- * then off for one second, repeatedly.
- */
 #include "Arduino.h"
+#include <LD2450.h>
 
 #ifndef LED_BUILTIN
 #define LED_BUILTIN 13
 #endif
 
-void setup()
-{
-  // initialize LED digital pin as an output.
-  pinMode(LED_BUILTIN, OUTPUT);
+const int ledPin = LED_BUILTIN;
+
+// SENSOR INSTANCE
+LD2450 ld2450;
+
+void setup() {
+  Serial.begin(115200);
+  Serial.println("SETUP_STARTED");
+
+  pinMode(ledPin, OUTPUT);
+  digitalWrite(ledPin, LOW);
+
+  ld2450.begin(Serial1, false);
+
+  Serial.println("SETUP_FINISHED");
 }
 
-void loop()
-{
-  // turn the LED on (HIGH is the voltage level)
-  digitalWrite(LED_BUILTIN, HIGH);
+void sendTargetJSON(int id, const LD2450::RadarTarget &t) {
+  Serial.print("{\"id\":");
+  Serial.print(id);
 
-  // wait for a second
-  delay(1000);
+  Serial.print(",\"x\":");
+  Serial.print(t.x);
 
-  // turn the LED off by making the voltage LOW
-  digitalWrite(LED_BUILTIN, LOW);
+  Serial.print(",\"y\":");
+  Serial.print(t.y);
 
-   // wait for a second
-  delay(1000);
+  Serial.print(",\"speed\":");
+  Serial.print(t.speed);
+
+  Serial.print(",\"distance\":");
+  Serial.print(t.distance);
+
+  Serial.print(",\"valid\":");
+  Serial.print(t.valid ? 1 : 0);
+
+  Serial.println("}");
+}
+
+void loop() {
+  if (ld2450.read() > 0) {
+    Serial.print("\\TJ");
+    for (int i = 0; i < ld2450.getSensorSupportedTargetCount(); i++)
+      {
+	sendTargetJSON(i, ld2450.getTarget(i));
+      }
+  }
 }

@@ -1,0 +1,1 @@
+/usr/bin/c++ -Wl,--dependency-file=CMakeFiles/easyIDSexchange.dir/link.d CMakeFiles/easyIDSexchange.dir/src/main.cpp.o -o easyIDSexchange  libserial_wrapper.a

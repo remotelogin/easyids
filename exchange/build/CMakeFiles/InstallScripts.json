@@ -1,0 +1,7 @@
+{
+	"InstallScripts" : 
+	[
+		"/home/sovii/coding/embedded/easyids/exchange/build/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

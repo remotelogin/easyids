@@ -1,0 +1,4 @@
+/home/sovii/coding/embedded/easyids/exchange/build/CMakeFiles/serial_wrapper.dir
+/home/sovii/coding/embedded/easyids/exchange/build/CMakeFiles/easyIDSexchange.dir
+/home/sovii/coding/embedded/easyids/exchange/build/CMakeFiles/edit_cache.dir
+/home/sovii/coding/embedded/easyids/exchange/build/CMakeFiles/rebuild_cache.dir
